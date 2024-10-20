@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="CardComponent.RemoveListItemButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CardComponent"
+             mc:Ignorable="d"
+             d:Width="60" d:Height="60">
+    <UserControl.Resources>
+        <Style x:Key="RemoveIcon" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="2" Background="{Binding Background}">
+                                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,2,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!-- {Binding Foreground} {Binding Background} -->
+                                    <Path Stroke="{Binding Foreground}" StrokeThickness="4" Fill="Transparent"
+                                        Data="M 15,40 H 0 V 0 H 40 V 15"/>
+                                    <Path Stroke="{Binding Foreground}" StrokeThickness="4" StrokeEndLineCap="Round" StrokeStartLineCap="Round"
+                                        Data="M 6,8 L 34,8 M 6,16 L 16,16 M 6,24 L 12,24 M 6,32 L 12,32"/>
+                                    <!--<Path Stroke="WhiteSmoke" StrokeThickness="4" Fill="WhiteSmoke" StrokeEndLineCap="Round" StrokeStartLineCap="Round"
+                                        Data="M 20,20 L 32,32 M 32,20 L 20,32"/>-->
+                                    <Path Stroke="{Binding Foreground}" StrokeThickness="4" Fill="WhiteSmoke" StrokeEndLineCap="Round" StrokeStartLineCap="Round"
+                                        Data="M 18,26 L 34,26"/>
+                                    <Ellipse Width="32" Height="32" Stroke="{Binding Foreground}" StrokeThickness="4" Margin="10,10,0,0"/>
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Button Style="{StaticResource RemoveIcon}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click"/>
+    </Grid>
+</UserControl>

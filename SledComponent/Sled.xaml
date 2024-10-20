@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="SledComponent.Sled"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SledComponent"
+             xmlns:local_conv="clr-namespace:SledComponent.Converters"
+             xmlns:uc="clr-namespace:SledComponent"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <local_conv:BoolWidthConverter x:Key="BoolWidthConv"/>
+    <ControlTemplate TargetType="{x:Type ContentControl}" x:Key="Presenter">
+      <Grid>
+        <ContentPresenter Content="{Binding MyContent}" />
+      </Grid>
+    </ControlTemplate>
+  </UserControl.Resources>
+    <Grid VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Stretch">
+            <local:SledTab x:Name="TabButton" VerticalAlignment="Top" Margin="0,20,0,0"
+                           Label="{Binding Label, Mode=OneWay}" StrokeColor="{Binding EdgeColor}"
+                           FillColor="{Binding SledColor}"/>
+            <local:SledContainer Background="{Binding SledColor}"
+                Width="{Binding ElementName=TabButton, Path=ShowPanel, Converter={StaticResource BoolWidthConv}}"
+                TransitionHandler="{Binding ElementName=TabButton, Path=ShowPanel, Mode=OneWay}">
+                <local:SledContainer.Content>
+                    <ContentControl Template="{DynamicResource Presenter}"/>
+                </local:SledContainer.Content>
+            </local:SledContainer>
+        </StackPanel>
+    </Grid>
+</UserControl>
